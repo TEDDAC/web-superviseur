@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://unpkg.com/vue@3"></script>
-    <title>Configuration - Intégration chromecast</title>
+    <title>Configuration - Superviseur</title>
 </head>
 <body>
     <div id="app">
@@ -16,7 +16,7 @@
                 <td>Nom</td>
                 <td>Lien</td>
                 <td>Fréquence</td>
-                <td>Duree</td>
+                <td>Duree (minutes)</td>
                 <td>Supprimer</td>
             </tr>
             <tr v-for="config of configs">
@@ -28,10 +28,11 @@
             </tr>
         </table>
 
-        <button>Exécuter</button>
+        <button @click="execute()">Exécuter</button>
         <button @click="addItem()">Ajouter</button>
         <button @click="saveConfigs()">Sauvegarder</button>
     </div>
 </body>
+<script src="public/js/execute.js"></script>
 <script src="public/js/main.js"></script>
 </html>

@@ -26,6 +26,9 @@ createApp({
     addItem: function(){
       this.configs.push({nom: 'Nouveau',lien:'https://example.com',frequence:1,duree:1});
     },
+    execute: function(){
+      runTab(this.configs);
+    }
   },
   mounted: function(){
     this.getAllConfig();
