@@ -17,17 +17,28 @@ createApp({
     saveConfigs: function(){
       localStorage.setItem('data',JSON.stringify(this.configs));
     },
-    removeItem: function(config){
-      let index = this.configs.indexOf(config);
-      if(index !== -1){
-        this.configs.splice(index,1);
-      }
+    removeItem: function(index){
+      this.configs.splice(index,1);
     },
     addItem: function(){
-      this.configs.push({nom: 'Nouveau',lien:'https://example.com',frequence:1,duree:1});
+      this.configs.push({nom: 'Nouveau',lien:'https://example.com',frequence:1,duree:1,nextDateTimeTriggered:Date.now()});
     },
     execute: function(){
       runTab(this.configs);
+    },
+    moveUp: function(index){
+      if(index > 0){
+        let buf = this.configs[index];
+        this.configs[index] = this.configs[index-1];
+        this.configs[index-1] = buf;
+      }
+    },
+    moveDown: function(index){
+      if(index < this.configs.length-1){
+        let buf = this.configs[index];
+        this.configs[index] = this.configs[index+1];
+        this.configs[index+1] = buf;
+      }
     }
   },
   mounted: function(){

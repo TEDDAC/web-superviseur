@@ -10,21 +10,24 @@
 <body>
     <div id="app">
         <h1>Configuration Superviseur</h1>
-    
+        
         <table>
             <tr>
                 <td>Nom</td>
                 <td>Lien</td>
-                <td>Fréquence</td>
                 <td>Duree (minutes)</td>
-                <td>Supprimer</td>
+                <td>Fréquence (minutes)</td>
+                <td>Action</td>
             </tr>
-            <tr v-for="config of configs">
+            <tr v-for="(config, index) in configs">
                 <td><input type="text" v-model="config.nom"></td>
                 <td><input type="text" v-model="config.lien"></td>
-                <td><input type="text" v-model="config.frequence"></td>
                 <td><input type="text" v-model="config.duree"></td>
-                <td><button @click="removeItem(config)">✖</button></td>
+                <td><input type="text" v-model="config.frequence"></td>
+                <td><button @click="removeItem(index)">✖</button>
+                    <button @click="moveUp(index)">▲</button>
+                    <button @click="moveDown(index)">▼</button>
+                </td>
             </tr>
         </table>
 
@@ -32,6 +35,9 @@
         <button @click="addItem()">Ajouter</button>
         <button @click="saveConfigs()">Sauvegarder</button>
     </div>
+    <p>
+        <i>* si la fréquence d'un élément vaut 0, l'élément est lancé par défaut uniquement s'il n'y a pas d'autre lien à lancer.</i>
+    </p>
 </body>
 <script src="public/js/execute.js"></script>
 <script src="public/js/main.js"></script>
