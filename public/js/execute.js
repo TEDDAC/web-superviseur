@@ -19,6 +19,9 @@ async function runTab(array) {
           element.frequence == 0
         )
       }
+      if(current == undefined){
+        current = array[0];
+      }
       console.log(current);
       current.nextDateTimeTriggered = Date.now() + current.frequence*60*1000;
       tab.location = current.lien;
